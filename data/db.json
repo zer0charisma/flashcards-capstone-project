@@ -9,6 +9,16 @@
       "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
+    },
+    {
+      "name": "Rad new Deck",
+      "description": "Coolest deck around",
+      "id": 3
+    },
+    {
+      "name": "Another radical deck",
+      "description": "better than the cool one",
+      "id": 4
     }
   ],
   "cards": [
@@ -25,12 +35,6 @@
       "deckId": 1
     },
     {
-      "id": 3,
-      "front": "How do you pass data 'down' to a React child component?",
-      "back": "As properties or props",
-      "deckId": 1
-    },
-    {
       "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
       "back": "All paths. A route with no path matches all URL's",
       "deckId": 2,
@@ -44,10 +48,27 @@
     },
     {
       "cards": [],
-      "front": "b",
-      "back": "b",
+      "front": "Front of a card",
+      "back": "back of a card",
       "deckId": 1,
       "id": 7
+    },
+    {
+      "front": "asdfasdf",
+      "back": "asdfasdf",
+      "deckId": 1,
+      "id": 8
+    },
+    {
+      "front": "asdfadf",
+      "deckId": 1,
+      "id": 9
+    },
+    {
+      "front": "this",
+      "back": "that",
+      "deckId": 4,
+      "id": 10
     }
   ]
 }
