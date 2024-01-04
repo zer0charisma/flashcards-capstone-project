@@ -44,14 +44,14 @@ const DeckForm = ({setDecksList}) => {
             }}>
                 <label htmlFor="name">Name</label>
                 <br/>
-                <input size={90} id="name" onChange={(event) => {
+                <input id="name" onChange={(event) => {
                     setDeckObj({...deckObj, name: event.target.value})
                 }} name="name" value={deckObj.name} placeholder="Deck Name" />
                 <br/>
                 <br/>
                 <label htmlFor="description">Description</label>
                 <br/>
-                <textarea cols={90} onChange={(event) => {
+                <textarea onChange={(event) => {
                     setDeckObj({...deckObj, description: event.target.value})
                 }}  rows={4} id="description" value={deckObj.description} name="description" placeholder="Brief description of the deck" />
                 <br/>
