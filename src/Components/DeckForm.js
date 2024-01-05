@@ -12,12 +12,13 @@ const DeckForm = ({setDecksList}) => {
     description:''
   });
   const {deckId} = useParams();
+  
 
   useEffect(() => {
     if (location.pathname !== "/decks/new") {
       getDeck(setDeckObj, deckId)
     }
-  }, [deckId])
+  }, [deckId, location.pathname])
 
   return (
     <div>
@@ -33,13 +34,13 @@ const DeckForm = ({setDecksList}) => {
                 event.preventDefault()
                 const abortController = new AbortController();
                 if (location.pathname === "/decks/new") {
-                    createDeck(deckObj, abortController.signal).then(r => {
-                        setDecksList((oldList) => [...oldList, {...r, cards: []}])
+                    createDeck(deckObj, abortController.signal).then(res => {
+                        setDecksList((oldList) => [...oldList, {...res, cards: []}])
                         setDeckObj({name: '', description: ''})
-                        history.push(`/decks/${r.id}`)
+                        history.push(`/decks/${res.id}`)
                     })
                 } else {
-                    updateDeck({id: deckId, ...deckObj}, abortController.signal).then(r => history.push(`/decks/${deckId}`))
+                    updateDeck({id: deckId, ...deckObj}, abortController.signal).then(res => history.push(`/decks/${deckId}`))
                 }
             }}>
                 <label htmlFor="name">Name</label>

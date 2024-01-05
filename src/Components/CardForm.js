@@ -19,73 +19,67 @@ function CardForm() {
       readCard(cardId, abortController.signal)
         .then((value) => setCard(value));
     }
-  }, [deckId]);
-
+  }, [deckId])
   return (
     <div>
-      <Navigation>
-        {location.pathname === "/decks/new" ? (
-          <li>Add Card</li>
-        ) : (
-          <div>
-            <li> 
-              <Link to={`/decks/${deckId}`}>{deck.name}</Link> 
-            </li>
-          </div>
-        )}
-      </Navigation>
 
-      <h4>{`${deck.name}: Add Card`}</h4>
+        <Navigation>
+            <li><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
+            <li>/</li>
+            <li>Add Card</li>
+        </Navigation>
 
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          const abortController = new AbortController();
-          if (location.pathname.includes("edit")) {
-            updateCard(card, abortController.signal).then((res) => {
-              setCard({ front: "", back: "" });
-            });
-          } else {
-            createCard(deckId, card, abortController.signal).then((res) =>
-              setCard({ front: "", back: "" })
-            );
-          }
-        }}
-      >
-        <label htmlFor="front">Front</label>
-        <br />
+        <h4>{`${deck.name}: Add Card`}</h4>
 
-        <textarea
-          onChange={(event) => {
-            setCard({ ...card, front: event.target.value });
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            const abortController = new AbortController();
+            if (location.pathname.includes("edit")) {
+              updateCard(card, abortController.signal).then((res) => {
+                setCard({ front: "", back: "" });
+              });
+            } else {
+              createCard(deckId, card, abortController.signal).then((res) =>
+                setCard({ front: "", back: "" })
+              );
+            }
           }}
-          rows={5}
-          name="front"
-          id="front"
-          value={card.front || ""}
-          placeholder="Front side of card"
-        />
-        <br />
-        <label htmlFor="back">Back</label>
-        <br />
+        >
+          <label htmlFor="front">Front</label>
+          <br />
 
-        <textarea
-          onChange={(event) => {
-            setCard({ ...card, back: event.target.value });
-          }}
-          rows={5}
-          name="back"
-          id="back"
-          value={card.back || ""}
-          placeholder="Back side of card"
-        />
-        <br />
+          <textarea
+            onChange={(event) => {
+              setCard({ ...card, front: event.target.value });
+            }}
+            rows={5}
+            name="front"
+            id="front"
+            value={card.front || ""}
+            placeholder="Front side of card"
+          />
+          <br />
+          <label htmlFor="back">Back</label>
+          <br />
 
-        <button type="submit">Add Card</button>
-        <button onClick={() => history.push(`/decks/${deckId}`)}>Return to Deck</button>
-      </form>
-    </div>
-  );
-}
+          <textarea
+            onChange={(event) => {
+              setCard({ ...card, back: event.target.value });
+            }}
+            rows={5}
+            name="back"
+            id="back"
+            value={card.back || ""}
+            placeholder="Back side of card"
+          />
+          <br />
+
+          <button type="submit">Add Card</button>
+          <button onClick={() => history.push(`/decks/${deckId}`)}>Return to Deck</button>
+        </form>
+      </div>
+    );
+  }
 
 export default CardForm;

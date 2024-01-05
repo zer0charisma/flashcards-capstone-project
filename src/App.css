@@ -1,32 +1,54 @@
-CardsList 
-.decksList {
-    border-radius: 0.5px;
-    border-width: thick;
-    border-style: double;
-}
+.deckScreenButtons button {
+    margin-right: 12px;
+    background-color: green;
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .deckScreenButtons button:last-child {
+    float: right;
+  }
 
-.decksList > div {
-    padding: 7px;
+.decksList {
+    border-radius: 8px;
+    border: 2px solid green; 
+  }
+  
+  .decksList > div {
+    padding: 15px;
     display: flex;
     justify-content: space-between;
-}
-
-nav ul {
+    background-color: #f4f4f4; 
+    border-bottom: 1px solid #ccc;
+  }
+  
+  nav ul {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; 
     list-style-type: none;
-}
-
-nav li {
-    margin-right: 5px;
+  }
+  
+  nav li {
+    margin-right: 10px;
     font-weight: bold;
-    color: #4c566a;
-}
+    color: blue; 
+  }
+  
+  .cardForm button {
+    margin-right: 12px;
+    background-color: green;
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-.deckScreenButtons button {
-    margin-right: 9px;
-}
-
-.deckScreenButtons button:last-child {
+  
+  
+  .cardForm button:last-child {
     float: right;
-}
+  }

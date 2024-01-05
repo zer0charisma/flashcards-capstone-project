@@ -1,7 +1,21 @@
+import React from "react";
 import { useHistory } from "react-router-dom";
+import NotEnoughCards from "./NotEnoughCards";
 
 function Deck({ index, id, name, description, cardsLength, deleteDeck }) {
   const history = useHistory();
+
+  const handleStudyClick = () => {
+    if (cardsLength <= 2) {
+      // Render NotEnoughCards component if there are <= 2 cards
+      return (
+        <NotEnoughCards totalCards={cardsLength} deckId={id} />
+      );
+    } else {
+      // Redirect to the study page
+      history.push(`/decks/${id}/study`);
+    }
+  };
 
   return (
     <div className="decksList">
@@ -18,11 +32,7 @@ function Deck({ index, id, name, description, cardsLength, deleteDeck }) {
         >
           View
         </button>
-        <button
-          onClick={() => {
-            history.push(`/decks/${id}/study`);
-          }}
-        >
+        <button onClick={handleStudyClick}>
           Study
         </button>
       </div>

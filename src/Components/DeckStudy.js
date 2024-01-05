@@ -15,7 +15,7 @@ function DeckStudy() {
 
   useEffect(() => {
     getDeck(setDeck, deckId);
-  }, [deckId]);
+  }, [deckId])
 
   return (
     <div>
@@ -30,7 +30,7 @@ function DeckStudy() {
       {Object.keys(deck).length > 0 ? (
         <div>
           {cards.length <= 2 ? (
-            <NotEnoughCards />
+            <NotEnoughCards history={history} deckId={deckId} deck={deck} />
           ) : (
             <div>
               <h6>{`Card ${cardIndex + 1} of ${cards.length}`}</h6>

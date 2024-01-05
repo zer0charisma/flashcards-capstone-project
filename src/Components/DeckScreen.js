@@ -1,19 +1,19 @@
-import Navigation from "./Navigation";
-import DeckButtons from "./DeckButtons";  // Import the DeckButtons component
+import React, { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { readDeck, deleteCard } from "../utils/api";
-import { useParams, useHistory, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import Navigation from "./Navigation";
+import DeckButtons from "./DeckButtons";
 
 function getCardId(deckId, abortController, card) {
   return readDeck(deckId, abortController.signal).then((res) =>
     res.cards.find(
-      (eachCard) => eachCard.front === card.front && eachCard.back === card.back
+      (eachCard) =>
+        eachCard.front === card.front && eachCard.back === card.back
     )
   );
 }
 
 function DeckScreen() {
-  console.log("DeckScreen view has rendered");
   const { deckId } = useParams();
   const history = useHistory();
   const [deck, setDeck] = useState({});
@@ -31,21 +31,40 @@ function DeckScreen() {
     return "Loading...";
   }
 
+  const handleDeleteCard = async (card) => {
+    const confirmDelete = window.confirm(
+      "Delete this card? \n \n You will not be able to recover it."
+    );
+
+    if (confirmDelete) {
+      const abortController = new AbortController();
+      const cardToDelete = await getCardId(deckId, abortController, card);
+
+      // Call the deleteCard function with the card ID
+      await deleteCard(cardToDelete.id, abortController.signal);
+
+      // Update the deck state to reflect the deletion
+      const updatedDeck = await readDeck(deckId, abortController.signal);
+      setDeck(updatedDeck);
+      setCard(updatedDeck.cards);
+
+      // Redirect the user to the updated DeckScreen view
+      history.push(`/`);
+    }
+  };
+
   return (
     <div>
       <Navigation>
-      <div>
-            <li> 
-              {deck.name}
-            </li>
-          </div>
-        
+        <div>
+          <li>{deck.name}</li>
+        </div>
       </Navigation>
-      
+
       <div>
         <h5>{deck.name}</h5>
         <p>{deck.description}</p>
-        
+
         <DeckButtons history={history} deckId={deckId} />
 
         <br />
@@ -66,29 +85,7 @@ function DeckScreen() {
             >
               Edit
             </button>
-            <button
-              onClick={() => {
-                const answer = window.confirm(
-                  "Delete this card? \n \n You will not be able to recover it."
-                );
-                if (answer === true) {
-                  const abortController = new AbortController();
-                  getCardId(deckId, abortController, card).then((r) => {
-                    deleteCard(r.id, abortController.signal).then((r) =>
-                      setCard(
-                        cards.filter(
-                          (eachCard) =>
-                            eachCard.front !== card.front &&
-                            eachCard.back !== card.back
-                        )
-                      )
-                    );
-                  });
-                }
-              }}
-            >
-              Delete
-            </button>
+            <button onClick={() => handleDeleteCard(card)}>Delete</button>
           </div>
         ))}
       </div>

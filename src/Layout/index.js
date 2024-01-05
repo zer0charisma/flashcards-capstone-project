@@ -25,7 +25,7 @@ function Layout() {
   useEffect(() => { 
     const abortController = new AbortController();
     listDecks(abortController.signal)
-    .then((res) => setDecksList(res))
+    .then((data) => setDecksList(data))
   }, [])
 
   return (
