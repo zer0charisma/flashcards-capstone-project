@@ -5,6 +5,7 @@ import { getDeck } from "../Layout";
 import Navigation from "./Navigation";
 
 function CardForm() {
+  console.log("Cardform loaded");
   const [card, setCard] = useState({});
   const { deckId, cardId } = useParams();
   const history = useHistory();
@@ -20,16 +21,20 @@ function CardForm() {
         .then((value) => setCard(value));
     }
   }, [deckId])
+
+  const isEditScreen = location.pathname.includes("edit");
+  const pageTitle = isEditScreen ? "Edit Card" : "Add Card";
+  
   return (
     <div>
 
         <Navigation>
             <li><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
             <li>/</li>
-            <li>Add Card</li>
+            <li>{pageTitle}</li>
         </Navigation>
 
-        <h4>{`${deck.name}: Add Card`}</h4>
+        <h4>{`${deck.name}: ${pageTitle}`}</h4>
 
         <form
           onSubmit={(event) => {

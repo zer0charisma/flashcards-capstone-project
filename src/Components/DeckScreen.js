@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { readDeck, deleteCard } from "../utils/api";
+import { readDeck, deleteCard, delet } from "../utils/api";
 import Navigation from "./Navigation";
 import DeckButtons from "./DeckButtons";
 
@@ -14,6 +14,7 @@ function getCardId(deckId, abortController, card) {
 }
 
 function DeckScreen() {
+  console.log("DeckScreen loaded");
   const { deckId } = useParams();
   const history = useHistory();
   const [deck, setDeck] = useState({});
@@ -49,7 +50,7 @@ function DeckScreen() {
       setCard(updatedDeck.cards);
 
       // Redirect the user to the updated DeckScreen view
-      history.push(`/`);
+      history.push(`/decks/:deckId`);
     }
   };
 
