@@ -4,10 +4,12 @@ import { useHistory } from "react-router-dom";
 import DeckButtons from "./DeckButtons";
 
 function Deck({ id, name, description, cardsLength }) {
+  console.log("Deck loaded");
   const history = useHistory();
 
 
   return (
+    // Deck view shows the individual deck and the View button. Clicking View button loads DeckScreen
     <div className="decksList">
       <div>
         <h3>{name}</h3>

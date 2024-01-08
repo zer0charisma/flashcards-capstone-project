@@ -26,6 +26,8 @@ function DeckList({ decksList, setDecksList }) {
   };
 
   if (decksList.length > 0) {
+    // return the deckList if the user returns home from the Nav bar. 
+    // TODO: Refactor this and DeckScreen later to  eliminate redundant code
     return (
       <div>
         {decksList.map((deck, index) => (

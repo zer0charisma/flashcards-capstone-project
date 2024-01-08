@@ -22,6 +22,7 @@ function CardForm() {
     }
   }, [deckId])
 
+  // show appropriate page title for Add/ Edit card
   const isEditScreen = location.pathname.includes("edit");
   const pageTitle = isEditScreen ? "Edit Card" : "Add Card";
   

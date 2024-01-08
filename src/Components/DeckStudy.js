@@ -26,6 +26,7 @@ function DeckStudy() {
           </li>
         </div>
       </Navigation>
+      // if Deck has less than 2 cards, return NotEnoughCards function and Add Cards button
       <h1>{`${name}: Study`}</h1>
       {Object.keys(deck).length > 0 ? (
         <div>
@@ -33,6 +34,7 @@ function DeckStudy() {
             <NotEnoughCards history={history} deckId={deckId} deck={deck} />
           ) : (
             <div>
+              // if Deck has more than 2 cards, render the cards and Flip and Next buttons
               <h6>{`Card ${cardIndex + 1} of ${cards.length}`}</h6>
 
               {flip === 0 ? <p>{cards[cardIndex].front}</p> : <p>{cards[cardIndex].back}</p>}

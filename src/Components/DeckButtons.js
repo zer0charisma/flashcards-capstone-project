@@ -53,8 +53,6 @@ function DeckButtons({ history, deckId, cardsLength }) {
     }
   };
 
-  
-
   return (
     <div className="deckScreenButtons">
       <button onClick={() => history.push(`/decks/${deckId}/edit`)}>
